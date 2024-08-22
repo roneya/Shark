@@ -27,11 +27,12 @@ public class SupplierDetailController {
     }
 
     @RequestMapping(value = "supply/detail/custom/search", method = RequestMethod.GET)
-    public ResponseDTO searchSupplyDetail(@RequestParam(value = "location", required = false) String location,
+    public ResponseDTO searchSupplyDetail(@RequestParam(value = "id", required = false) String id,
+                                          @RequestParam(value = "location", required = false) String location,
                                           @RequestParam(value = "natureOfBusiness", required = false) String natureOfBusiness,
                                           @RequestParam(value = "manufacturerProcess", required = false) String manufacturingProcess,
                                           @RequestParam(value = "limit", required = false) String limit) {
-        return new ResponseDTO(Boolean.TRUE, supplierDetailFacade.searchSupplierDetail(location,
+        return new ResponseDTO(Boolean.TRUE, supplierDetailFacade.searchSupplierDetail(id, location,
                 natureOfBusiness, manufacturingProcess, limit), "Supplier Detail saved successfully");
     }
 }

@@ -42,9 +42,9 @@ public class SupplierDetailFacade {
         return new SupplierDetailDTO(supplierDetail);
     }
 
-    public List<SupplierDetailDTO> searchSupplierDetail(String location, String natureOfBusiness, String manufacturingProcess,
+    public List<SupplierDetailDTO> searchSupplierDetail(String id, String location, String natureOfBusiness, String manufacturingProcess,
                                                   String limit) {
 
-        return customSQL.searchSupplierDetail(location, natureOfBusiness, manufacturingProcess, limit);
+        return customSQL.searchSupplierDetail(id, location, natureOfBusiness, manufacturingProcess, limit);
     }
 }

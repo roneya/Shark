@@ -18,25 +18,31 @@ public class CustomSQL {
     @Lazy
     private EntityManager entityManager;
 
-    public List<SupplierDetailDTO> searchSupplierDetail(String location, String natureOfBusiness, String manufacturingProcess, String limit) {
+    public List<SupplierDetailDTO> searchSupplierDetail(String id, String location, String natureOfBusiness, String manufacturingProcess, String limit) {
 
         StringBuilder q = new StringBuilder("SELECT uuid, company_name, location, website, business_nature, manufacturer_process " +
                 "from supplier_detail where 1=1");
+        if (id != null) {
+            q.append(" and id = :id");
+        }
         if (location != null) {
-            q.append(" AND location = :location");
+            q.append(" and location = :location");
         }
         if (natureOfBusiness != null) {
-            q.append(" AND business_nature = :business_nature");
+            q.append(" and business_nature = :business_nature");
         }
         if (manufacturingProcess != null) {
-            q.append(" AND manufacturer_process = :manufacturer_process");
+            q.append(" and manufacturer_process = :manufacturer_process");
         }
 
         if (limit != null) {
-            q.append(" LIMIT :limit");
+            q.append(" limit :limit");
         }
 
         Query query = entityManager.createNativeQuery(q.toString());
+        if (id != null) {
+            query.setParameter("id", Long.parseLong(id));
+        }
         if (location != null) {
             query.setParameter("location", location);
         }
